@@ -33,6 +33,7 @@ if (!process.argv[2]) {
   consoleError(
     "No sources are specified, be sure to fill in the staging or production source"
   );
+  return false;
 }
 
 const synchronizeSource = process.argv[2];
@@ -111,3 +112,4 @@ if (synchronizeSource === "production") {
     `rsync -ravh --delete-after ${process.env.PRODUCTION_SERVER}:${process.env.PRODUCTION_PROJECT_FOLDER}/public/uploads public`
   );
 }
+runCommand("touch public/uploads/.gitkeep");
